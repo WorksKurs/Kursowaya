@@ -1,2 +1,2 @@
 
-void Hello ();
+void Menu ();
