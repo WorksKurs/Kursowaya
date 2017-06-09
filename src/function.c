@@ -7,8 +7,8 @@ int randoms (int N) { return rand()%N; }
 
 void FillNull (int mass[], int sizex, int sizey) {
     int i, j;
-    for (i=0; i<sizex; i++) {
-        for (j=0; j<sizey; j++) {
+    for (i=0; i<sizey; i++) {
+        for (j=0; j<sizex; j++) {
             mass[i*sizex+j]=0;
         }
     }
@@ -17,8 +17,8 @@ void FillNull (int mass[], int sizex, int sizey) {
 void FillRand (int mass[], int sizex, int sizey) {
     int i, j;
     srand(time(NULL));
-    for (i=1; i<sizex-1; i++) {
-        for (j=1; j<sizey-1; j++) {
+    for (i=1; i<sizey-1; i++) {
+        for (j=1; j<sizex-1; j++) {
             mass[i*sizex+j]=randoms(2);
         }
     }
@@ -58,23 +58,19 @@ void Game (int sizex, int sizey) {
         for (i=1; i<sizey-1; i++) {
             for (j=1; j<sizex-1; j++) {
                 neighbors=0;
-                neighbors+=mass[(i-1)*sizey+j-1]+mass[(i-1)*sizey+j]+mass[(i-1)*sizey+j+1];
-                neighbors+=mass[i*sizey+j-1]+mass[i*sizey+j+1];
-                neighbors+=mass[(i+1)*sizey+j-1]+mass[(i+1)*sizey+j]+mass[(i+1)*sizey+j+1];
-                step[i*sizey+j]=neighbors;
+                neighbors+=mass[(i-1)*sizex+j-1]+mass[(i-1)*sizex+j]+mass[(i-1)*sizex+j+1];
+                neighbors+=mass[i*sizex+j-1]+mass[i*sizex+j+1];
+                neighbors+=mass[(i+1)*sizex+j-1]+mass[(i+1)*sizex+j]+mass[(i+1)*sizex+j+1];
+                step[i*sizex+j]=neighbors;
             }
         }
         for (i=1; i<sizey-1; i++)
             for (j=1; j<sizex-1; j++) {
                 pass2[i*sizex+j]=pass1[i*sizex+j];
                 pass1[i*sizex+j]=mass[i*sizex+j];
-            }
-        for (i=1; i<sizey-1; i++) {
-            for (j=1; j<sizex-1; j++) {
                 if (mass[i*sizex+j]==0 && step[i*sizex+j]==3) mass[i*sizex+j]=1;
                 if (mass[i*sizex+j]==1 && step[i*sizex+j]!=2 && step[i*sizex+j]!=3) mass[i*sizex+j]=0;
             }
-        }
         sleep (1);
         printf ("\n");
     }
