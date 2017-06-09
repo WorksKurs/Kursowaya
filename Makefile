@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -c -Wall -Werror -o
-OBJECTS = build/main.o build/function.o
+OBJECTS = build/main.o build/function.o build/menu.o
 
 all:  prog
 prog: $(OBJECTS) bin/
@@ -9,6 +9,8 @@ build/main.o : build/ src/main.c
 	$(CC) src/main.c $(CFLAGS) build/main.o
 build/function.o : build/ src/function.c
 	$(CC) src/function.c $(CFLAGS) build/function.o
+build/menu.o : build/ src/menu.c
+	$(CC) src/menu.c $(CFLAGS) build/menu.o
 bin/ :
 	mkdir bin
 build/ :

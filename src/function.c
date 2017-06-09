@@ -1,5 +1,5 @@
 #include <stdio.h>
 
-void Hello () {
-    printf ("HelloWorld\n");
+void Game (int sizex, int sizey) {
+    
 }
