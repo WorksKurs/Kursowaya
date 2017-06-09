@@ -26,7 +26,7 @@ void FillRand (int mass[], int sizex, int sizey) {
 
 void Game (int sizex, int sizey) {
     system ("clear");
-    int gen=0, i, j, neighbors, alive=1;
+    int gen=0, i, j, neighbors, alive=1, difference1=1, difference2=1;
     sizex+=2;
     sizey+=2;
     int mass[sizex*sizey], step[sizex*sizey], pass1[sizex*sizey], pass2[sizex*sizey];
@@ -35,9 +35,16 @@ void Game (int sizex, int sizey) {
     FillNull (pass1, sizex, sizey);
     FillNull (pass2, sizex, sizey);
     FillRand (mass, sizex, sizey);
-    while (alive!=0) {
+    while (alive!=0 && difference1!=0 && difference2!=0) {
+        difference1=0;
+        difference2=0;
         alive=0;
         gen++;
+        for (i=1; i<sizey-1 && (difference1==0 || difference2==0); i++)
+            for (j=1; j<sizex-1 && (difference1==0 || difference2==0); j++) {
+                if (pass2[i*sizex+j]!=mass[i*sizex+j]) difference2++;
+                if (pass1[i*sizex+j]!=mass[i*sizex+j]) difference1++;
+            }
         for (i=1; i<sizey-1; i++) {
             for (j=1; j<sizex-1; j++) {
                 if (mass[i*sizex+j]==1) {
@@ -57,14 +64,20 @@ void Game (int sizex, int sizey) {
                 step[i*sizey+j]=neighbors;
             }
         }
+        for (i=1; i<sizey-1; i++)
+            for (j=1; j<sizex-1; j++) {
+                pass2[i*sizex+j]=pass1[i*sizex+j];
+                pass1[i*sizex+j]=mass[i*sizex+j];
+            }
         for (i=1; i<sizey-1; i++) {
             for (j=1; j<sizex-1; j++) {
                 if (mass[i*sizex+j]==0 && step[i*sizex+j]==3) mass[i*sizex+j]=1;
                 if (mass[i*sizex+j]==1 && step[i*sizex+j]!=2 && step[i*sizex+j]!=3) mass[i*sizex+j]=0;
             }
         }
-        sleep (0);
+        sleep (1);
         printf ("\n");
     }
-    printf ("Все клетки погибли. Жизнь существовала %d поколения(ий).\n", gen-1);
+    if (alive==0)printf ("Все клетки погибли. Жизнь существовала %d поколения(ий).\n", gen-1);
+    if (difference1==0 || difference2==0) printf ("Жизнь зациклена и бесконечна! Это произошло на %d поколении.\n", gen);
 }
