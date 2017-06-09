@@ -53,6 +53,7 @@ void MenuStandart () {
 }
 
 void MenuInput () {
+    char garbage;
     int sizex=1, sizey=1;
     system ("clear");
     printf ("\n\n%56s", "Игра 'Жизнь'\n\n\n");
@@ -69,6 +70,7 @@ void MenuInput () {
         if (sizex==0) break;
         if (sizex<5 || sizex>25) printf ("%30s %s", " ", "Неверный размер! Введите заново: ");
     }
+    scanf ("%c", &garbage);
     if (sizey!=0 && sizex!=0) Game (sizex, sizey);
     else MenuGame ();
 }
