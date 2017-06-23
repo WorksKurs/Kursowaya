@@ -26,7 +26,8 @@ void FillRand (int mass[], int sizex, int sizey) {
 
 void Game (int sizex, int sizey) {
     system ("clear");
-    int gen=0, i, j, neighbors, alive=1, difference1=1, difference2=1;
+    int gen=0, i, j, k=0, neighbors, alive=1, difference1=1, difference2=1, time=0;
+    char code, garbage;
     sizex+=2;
     sizey+=2;
     int mass[sizex*sizey], step[sizex*sizey], pass1[sizex*sizey], pass2[sizex*sizey];
@@ -34,7 +35,32 @@ void Game (int sizex, int sizey) {
     FillNull (step, sizex, sizey);
     FillNull (pass1, sizex, sizey);
     FillNull (pass2, sizex, sizey);
-    FillRand (mass, sizex, sizey);
+    while (k==0) {
+        FillRand (mass, sizex, sizey);
+        for (i=1; i<sizey-1; i++) {
+            for (j=1; j<sizex-1; j++) {
+                if (mass[i*sizex+j]==1) {
+                    alive++;
+                    printf ("|+|");
+                }
+                else printf ("| |");
+            }
+            printf ("\n");
+        }
+        printf ("\n\n%30s %s", " ", "Изменить первое поколение?\n");
+        printf ("%30s %s", " ", "1. Да\n");
+        printf ("%30s %s", " ", "2. Нет\n");
+        scanf ("%c", &code);
+        scanf ("%c", &garbage);
+        switch (code) {
+            case 49: break;
+            case 50: k=1; break;
+        }
+        system ("clear");
+    }
+    printf ("\n\n%15s %s", " ", "Введите время задержки между поколениями (в секундах):\n");
+    scanf ("%d", &time);
+    system ("clear");
     while (alive!=0 && difference1!=0 && difference2!=0) {
         difference1=0;
         difference2=0;
@@ -71,7 +97,7 @@ void Game (int sizex, int sizey) {
                 if (mass[i*sizex+j]==0 && step[i*sizex+j]==3) mass[i*sizex+j]=1;
                 if (mass[i*sizex+j]==1 && step[i*sizex+j]!=2 && step[i*sizex+j]!=3) mass[i*sizex+j]=0;
             }
-        sleep (1);
+        sleep (time);
         printf ("\n");
     }
     if (alive==0)printf ("Все клетки погибли. Жизнь существовала %d поколения(ий).\n", gen-1);
