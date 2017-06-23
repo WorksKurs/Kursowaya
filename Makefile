@@ -19,3 +19,7 @@ build/ :
 .PHONY : clean
 clean: 
 	rm -f bin/* build/*
+game :
+	./bin/Game
+open :
+	gedit src/main.c src/function.h src/function.c src/menu.c
