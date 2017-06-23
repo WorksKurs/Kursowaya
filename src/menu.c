@@ -4,36 +4,43 @@
 
 void Menu () {
     char code, garbage;
+    int i=0;
     system ("clear");
     printf ("\n\n%56s", "Игра 'Жизнь'\n\n\n");
     printf ("%30s %s", " ", "1. Начать игру\n");
     printf ("%30s %s", " ", "2. Выход\n");
-    scanf ("%c", &code);
-    scanf ("%c", &garbage);
-    switch (code) {
-        case 49: MenuGame (); break;
-        case 50: break;
+    while (i==0) {
+        scanf ("%c", &code);
+        scanf ("%c", &garbage);
+        switch (code) {
+            case 49: MenuGame (); i=1; break;
+            case 50: i=1; break;
+        }
     }
 }
 
 void MenuGame () {
     char code, garbage;
+    int i=0;
     system ("clear");
     printf ("\n\n%56s", "Игра 'Жизнь'\n\n\n");
     printf ("%30s %s", " ", "1. Стандартное поле\n");
     printf ("%30s %s", " ", "2. Задать поле\n");
     printf ("%30s %s", " ", "3. Назад\n");
-    scanf ("%c", &code);
-    scanf ("%c", &garbage);
-    switch (code) {
-        case 49: MenuStandart (); break;
-        case 50: MenuInput (); break;
-        case 51: Menu ();
+    while (i==0) {
+        scanf ("%c", &code);
+        scanf ("%c", &garbage);
+        switch (code) {
+            case 49: MenuStandart (); i=1; break;
+            case 50: MenuInput (); i=1; break;
+            case 51: Menu (); i=1;
+        }
     }
 }
 
 void MenuStandart () {
     char code, garbage;
+    int i=0;
     system ("clear");
     printf ("\n\n%56s", "Игра 'Жизнь'\n\n\n");
     printf ("%30s %s", " ", "1. Поле 5х5\n");
@@ -41,14 +48,16 @@ void MenuStandart () {
     printf ("%30s %s", " ", "3. Поле 15х15\n");
     printf ("%30s %s", " ", "4. Поле 20х20\n");
     printf ("%30s %s", " ", "5. Назад\n");
-    scanf ("%c", &code);
-    scanf ("%c", &garbage);
-    switch (code) {
-        case 49: Game (5, 5); break;
-        case 50: Game (10, 10); break;
-        case 51: Game (15, 15); break;
-        case 52: Game (20, 20); break;
-        case 53: MenuGame ();
+    while (i==0) {
+        scanf ("%c", &code);
+        scanf ("%c", &garbage);
+        switch (code) {
+            case 49: Game (5, 5); i=1; break;
+            case 50: Game (10, 10); i=1; break;
+            case 51: Game (15, 15); i=1; break;
+            case 52: Game (20, 20); i=1; break;
+            case 53: MenuGame (); i=1;
+        }
     }
 }
 
