@@ -26,7 +26,7 @@ void FillRand (int mass[], int sizex, int sizey) {
 
 void Game (int sizex, int sizey) {
     system ("clear");
-    int gen=0, i, j, k=0, neighbors, alive=1, difference1=1, difference2=1;
+    int gen=0, i, j, k=0, neighbors, alive=1, difference1=1, difference2=1, time=0;
     char code, garbage;
     sizex+=2;
     sizey+=2;
@@ -58,6 +58,9 @@ void Game (int sizex, int sizey) {
         }
         system ("clear");
     }
+    printf ("\n\n%15s %s", " ", "Введите время задержки между поколениями (в секундах):\n");
+    scanf ("%d", &time);
+    system ("clear");
     while (alive!=0 && difference1!=0 && difference2!=0) {
         difference1=0;
         difference2=0;
@@ -94,7 +97,7 @@ void Game (int sizex, int sizey) {
                 if (mass[i*sizex+j]==0 && step[i*sizex+j]==3) mass[i*sizex+j]=1;
                 if (mass[i*sizex+j]==1 && step[i*sizex+j]!=2 && step[i*sizex+j]!=3) mass[i*sizex+j]=0;
             }
-        sleep (1);
+        sleep (time);
         printf ("\n");
     }
     if (alive==0)printf ("Все клетки погибли. Жизнь существовала %d поколения(ий).\n", gen-1);
