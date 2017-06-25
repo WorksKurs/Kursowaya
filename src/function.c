@@ -26,7 +26,7 @@ void FillRand (int mass[], int sizex, int sizey) {
 
 void Game (int sizex, int sizey) {
     system ("clear");
-    int gen=0, i, j, k=0, neighbors, alive=1, difference1=1, difference2=1, time=0;
+    int gen=0, i, j, k=0, neighbors, alive=1, difference1=1, difference2=1, time=-1;
     char code, garbage;
     sizex+=2;
     sizey+=2;
@@ -58,8 +58,10 @@ void Game (int sizex, int sizey) {
         }
         system ("clear");
     }
-    printf ("\n\n%15s %s", " ", "Введите время задержки между поколениями (в секундах):\n");
-    scanf ("%d", &time);
+    while (time<0) {
+        printf ("\n\n%15s %s", " ", "Введите время задержки между поколениями (в секундах):\n");
+        scanf ("%d", &time);
+    }
     system ("clear");
     while (alive!=0 && difference1!=0 && difference2!=0) {
         difference1=0;
