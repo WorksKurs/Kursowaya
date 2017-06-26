@@ -25,6 +25,15 @@ void FillNull (char mass[], int sizex, int sizey) {
     }
 }
 
+void FillOne (char mass[], int sizex, int sizey) {
+    int i, j;
+    for (i=0; i<sizey; i++) {
+        for (j=0; j<sizex; j++) {
+            mass[i*sizex+j]=1;
+        }
+    }
+}
+
 void FillRand (char mass[], int sizex, int sizey) {
     int i, j;
     srand(time(NULL));
