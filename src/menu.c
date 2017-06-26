@@ -67,17 +67,17 @@ void MenuInput () {
     system ("clear");
     printf ("\n\n%56s", "Игра 'Жизнь'\n\n\n");
     printf ("%30s %s", " ", "0. Назад\n");
-    printf ("%30s %s", " ", "Введите высоту поля(5-25): ");
-    while (sizey<5 || sizey>25) {
+    printf ("%30s %s", " ", "Введите высоту поля(5-50): ");
+    while (sizey<5 || sizey>50) {
         scanf ("%d", &sizey);
         if (sizey==0) break;
-        if (sizey<5 || sizey>25) printf ("%30s %s", " ", "Неверный размер! Введите заново: ");
+        if (sizey<5 || sizey>50) printf ("%30s %s", " ", "Неверный размер! Введите заново: ");
     }
-    if (sizey!=0) printf ("\n%30s %s", " ", "Введите ширину поля(5-25): ");
-    while ((sizex<5 || sizex>25) && sizey!=0) {
+    if (sizey!=0) printf ("\n%30s %s", " ", "Введите ширину поля(5-50): ");
+    while ((sizex<5 || sizex>50) && sizey!=0) {
         scanf ("%d", &sizex);
         if (sizex==0) break;
-        if (sizex<5 || sizex>25) printf ("%30s %s", " ", "Неверный размер! Введите заново: ");
+        if (sizex<5 || sizex>50) printf ("%30s %s", " ", "Неверный размер! Введите заново: ");
     }
     scanf ("%c", &garbage);
     if (sizey!=0 && sizex!=0) Game (sizex, sizey);
