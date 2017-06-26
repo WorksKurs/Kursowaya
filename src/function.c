@@ -5,7 +5,7 @@
 
 int randoms (int N) { return rand()%N; }
 
-void FillNull (int mass[], int sizex, int sizey) {
+void FillNull (char mass[], int sizex, int sizey) {
     int i, j;
     for (i=0; i<sizey; i++) {
         for (j=0; j<sizex; j++) {
@@ -14,7 +14,7 @@ void FillNull (int mass[], int sizex, int sizey) {
     }
 }
 
-void FillRand (int mass[], int sizex, int sizey) {
+void FillRand (char mass[], int sizex, int sizey) {
     int i, j;
     srand(time(NULL));
     for (i=1; i<sizey-1; i++) {
@@ -26,11 +26,12 @@ void FillRand (int mass[], int sizex, int sizey) {
 
 void Game (int sizex, int sizey) {
     system ("clear");
-    int gen=0, i, j, k=0, neighbors, alive=1, difference1=1, difference2=1, time=-1;
+    char i, j, k=0, neighbors, alive=1, difference1=1, difference2=1;
+    int gen=0, time=-1;
     char code, garbage;
     sizex+=2;
     sizey+=2;
-    int mass[sizex*sizey], step[sizex*sizey], pass1[sizex*sizey], pass2[sizex*sizey];
+    char mass[sizex*sizey], step[sizex*sizey], pass1[sizex*sizey], pass2[sizex*sizey];
     FillNull (mass, sizex, sizey);
     FillNull (step, sizex, sizey);
     FillNull (pass1, sizex, sizey);
